@@ -1,0 +1,551 @@
+<style>
+  * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  color: #0f172a;
+}
+
+.page {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+}
+
+.hero {
+  margin-bottom: 3rem;
+}
+
+.hero h1 {
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.6rem;
+}
+
+.hero p {
+  font-size: 16px;
+  color: #475569;
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.sec-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: #94a3b8;
+  margin-bottom: .6rem;
+}
+
+.sec-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: .4rem;
+}
+
+.sec-sub {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 1.5rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.card {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(148,163,184,0.2);
+  border-radius: 16px;
+  padding: 1.2rem;
+  min-height: 140px; 
+  height: auto; 
+  position: relative;
+  overflow: hidden;
+  transition: all .25s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+}
+
+.card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  border-color: rgba(59,130,246,0.3);
+}
+
+.cf, .cb {
+  position: absolute;
+  inset: 0;
+  padding: 1.2rem;
+  transition: all .25s ease;
+}
+
+.cf {
+  opacity: 1;
+  transform: translateY(0);
+  z-index: 1;
+}
+
+.cb {
+  opacity: 0;
+  transform: translateY(10px);
+  z-index: 2;
+  overflow-y: auto;
+}
+
+.card:hover .cf {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.card:hover .cb {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.tb { background:#e0f2fe; color:#0369a1; }
+.tt { background:#dcfce7; color:#166534; }
+.ta { background:#fef3c7; color:#92400e; }
+.tc { background:#fee2e2; color:#991b1b; }
+
+.ct {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.ch {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #cbd5f5, transparent);
+  margin: 2.5rem 0;
+}
+
+.toggle-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.pv-btn {
+  font-size: 13px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.pv-btn:hover {
+  background: #f1f5f9;
+}
+
+.pv-btn.active {
+  background: #0f172a;
+  color: white;
+  border-color: #0f172a;
+}
+
+.pv-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.3rem;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
+
+.pv-card h3 {
+  font-size: 15px;
+  margin-bottom: .7rem;
+}
+
+.pv-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pv-points li {
+  font-size: 14px;
+  color: #475569;
+  padding-left: 16px;
+  position: relative;
+}
+
+.pv-points li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: #0f172a;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 8px;
+}
+
+.quiz-wrap {
+  margin-top: 2rem;
+  max-width: 640px;
+}
+
+.q-progress {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+}
+
+.q-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: #0f172a;
+  line-height: 1.4;
+  margin-bottom: 1.25rem; 
+}
+
+.q-opts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.q-opt {
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.q-opt:hover {
+  background: #f1f5f9;
+  transform: translateY(-1px);
+}
+
+.q-fb {
+  font-size: 14px;
+  color: #334155;
+  margin-top: 1.25rem;
+  line-height: 1.6;
+
+  padding: 1rem 1.1rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem; 
+}
+
+.q-next {
+  align-self: flex-start;
+
+  font-size: 13px;
+  padding: 8px 14px;
+  border-radius: 999px;
+
+  border: none;
+  background: #0f172a;
+  color: white;
+
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.q-next:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.q-bar-wrap {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.q-bar {
+  height: 100%;
+  width: 0%;
+  background: #0f172a;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.q-opt.correct {
+  background: #dcfce7;
+  border-color: #16a34a;
+  color: #166534;
+}
+
+.q-opt.wrong {
+  background: #fee2e2;
+  border-color: #dc2626;
+  color: #991b1b;
+}
+
+@media (max-width: 700px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+</style>
+
+<h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Interactive guide to AI and creativity covering benefits, tradeoffs, perspectives, and a short quiz</h2>
+
+<div class="page">
+  <div class="hero">
+    <h1>AI &amp; Creativity</h1>
+    <p>How AI is changing the way we make things. We’re looking at what it opens up for us, the risks we should watch out for, and how to use it the right way.</p>
+  </div>
+
+<div class="section">
+    <div class="sec-label">Section 01</div>
+    <div class="sec-title">What AI brings to the table</div>
+    <div class="sec-sub">The practical ways AI expands creative capability</div>
+    <div class="cards">
+      <div class="card">
+        <div class="cf"><div class="tag tb">Tool</div><div class="ct">Brainstorming ideas</div><div class="ch">Hover to explore</div></div>
+        <div class="cb">
+          <div class="cbd">AI can throw out hundreds of ideas in seconds. This gives you a lot to work with right away so you aren't just staring at a blank page.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cf"><div class="tag tb">Tool</div><div class="ct">Automating tasks</div><div class="ch">Hover to explore</div></div>
+        <div class="cb">
+          <div class="cbd">AI takes care of resizing, formatting, and rough drafts. This lets you save your energy for the big creative choices that actually matter.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cf"><div class="tag tt">Benefit</div><div class="ct">Faster iteration</div><div class="ch">Hover to explore</div></div>
+        <div class="cb">
+          <div class="cbd">The time between having an idea and seeing it finished is way shorter now. You can test out ten different versions in the time it used to take to make one.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cf"><div class="tag tt">Benefit</div><div class="ct">Lower barrier to entry</div><div class="ch">Hover to explore</div></div>
+        <div class="cb">
+          <div class="cbd">Even if you aren't an expert, you can still put together clean writing, cool visuals, or working code. It makes creating things much more accessible for everyone.</div>
+        </div>
+      </div>
+    </div>
+    <div class="hint"><span class="dot"></span> Hover each card to reveal details</div>
+</div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="sec-label">Section 02</div>
+    <div class="sec-title">The tradeoffs and open questions</div>
+    <div class="sec-sub">Where AI-assisted creativity gets complicated</div>
+    <div class="cards">
+      <div class="card">
+        <div class="cf"><div class="tag ta">Tradeoff</div><div class="ct">Less originality</div><div class="ch">Hover to explore</div></div>
+        <div class="cb">
+          <div class="cbd">Since models are trained on stuff that already exists, they mostly just mix up old patterns. This means the results can feel a bit generic instead of actually being new.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cf"><div class="tag ta">Tradeoff</div><div class="ct">Homogenization risk</div><div class="ch">Hover to explore</div></div>
+        <div class="cb">
+          <div class="cbd">If everyone is using the same tools to get their work done, we might lose out on the unique styles and different voices that make things interesting.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cf"><div class="tag tc">Concern</div><div class="ct">Who owns the work?</div><div class="ch">Hover to explore</div></div>
+        <div class="cb">
+          <div class="cbd">Copyright laws haven't really caught up to this tech yet. It creates a lot of confusion over who gets the credit or gets paid for work made with AI.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cf"><div class="tag tc">Concern</div><div class="ct">Shift in human agency</div><div class="ch">Hover to explore</div></div>
+        <div class="cb">
+          <div class="cbd">If we let AI handle all the hard parts of being creative, we might stop developing the skills that come from struggling through a tough project ourselves.</div>
+        </div>
+      </div>
+    </div>
+    <div class="hint"><span class="dot"></span> Hover each card to reveal details</div>
+</div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="sec-label">Section 03</div>
+    <div class="sec-title">How to use AI responsibly as a creator</div>
+    <div class="sec-sub">Explore based</div>
+
+    <div class="toggle-row">
+      <button class="pv-btn active" onclick="setPv('creator')">For creators</button>
+      <button class="pv-btn" onclick="setPv('educator')">For educators</button>
+      <button class="pv-btn" onclick="setPv('org')">For organizations</button>
+    </div>
+
+    <div class="pv-card" id="pv-box">
+      <h3 id="pv-title">Using AI as a creative collaborator</h3>
+      <ul class="pv-points" id="pv-list"></ul>
+    </div>
+
+    <div style="margin-top:1.5rem">
+      <div class="sec-sub" style="margin-bottom:.9rem">Test your understanding</div>
+      <div class="quiz-wrap" id="quiz"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const pvData = {
+  creator: {
+    title: "Using AI as a creative collaborator",
+    points: [
+      "Use AI to brainstorm or get a rough first draft down, but make sure you step in to refine it with your own style.",
+      "Keep your own vision at the center. Let the AI suggest ideas while you decide what actually works.",
+      "Be honest with your audience if AI did a lot of the heavy lifting on a project.",
+      "Focus on what AI can't do. Your personal voice and real life stories are what make your work stand out.",
+      "Look at AI results as raw materials instead of a finished piece. Don't be afraid to edit it heavily."
+    ]
+  },
+  educator: {
+    title: "Guiding students in an AI enabled world",
+    points: [
+      "Treat AI as a professional tool that students will eventually use at work. Only ban it if there is a really specific learning goal in the way.",
+      "Build assignments that lean on personal reflections, unique arguments, or talking through ideas in person.",
+      "Teach students how to double check what the AI says. They need to watch out for mistakes, bias, and unoriginal ideas.",
+      "Use AI drafts as a way to start a conversation rather than a way to skip the actual thinking.",
+      "Help students master the basics first. They need solid skills to actually lead the AI instead of just clicking buttons."
+    ]
+  },
+  org: {
+    title: "Building responsible AI practices at scale",
+    points: [
+      "Create clear rules about using AI for creative projects because being vague just leads to messy results and extra risk.",
+      "Focus on training. Teams that really get how AI works are much better at using it the right way.",
+      "Check over any AI assisted work for bias or stolen ideas before it goes out the door.",
+      "Decide on a standard for giving credit so everyone knows exactly where the AI was involved.",
+      "Always leave room for work that is 100% human. It keeps the creativity fresh and stops everyone from getting too dependent on the tech."
+    ]
+  }
+};
+
+const questions = [
+  {q:"What is the main risk of many creators all using the same AI tools?",opts:["Faster output","Creative homogenization","Higher costs","Better quality"],correct:1,fb:"When everyone generates work through the same model, output tends to converge, and this reduces the diversity of styles and voices that makes creative culture rich."},
+  {q:"According to responsible use principles, who should ultimately direct the creative process?",opts:["The AI model","The algorithm","The human creator","The platform"],correct:2,fb:"AI is most valuable when humans dictate the direction and set right prompts, setting intent, making judgments, and refining output rather than accepting it wholesale."},
+  {q:"Which of these is an unsettled legal question around AI-generated creative work?",opts:["Speed of generation","Copyright ownership","File format","Model size"],correct:1,fb:"Copyright law hasn't caught up with AI. Who owns AI-generated work (the user, the company, nobody?) remains an active legal and ethical debate."},
+  {q:"What does 'lower barrier to entry' mean in the context of AI and creativity?",opts:["AI is cheaper to run","Anyone can now produce polished creative work regardless of prior skill","AI makes work faster","Creators earn less"],correct:1,fb:"AI tools let people without years of specialist training produce high-quality writing, visuals, or code, and this expands who can participate in creative fields."}
+];
+
+let qIdx=0, score=0, answered=false;
+
+function setPv(key) {
+  document.querySelectorAll('.pv-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  const d = pvData[key];
+  document.getElementById('pv-title').textContent = d.title;
+
+  const ul = document.getElementById('pv-list');
+  ul.innerHTML = d.points.map(p => `<li>${p}</li>`).join('');
+}
+
+function renderQ() {
+  const box = document.getElementById('quiz');
+
+  if (qIdx >= questions.length) {
+    const pct = Math.round(score / questions.length * 100);
+    box.innerHTML = `
+      <div class="q-score">
+        You got ${score} of ${questions.length} correct
+        <span>${pct}%</span>
+        <div style="font-size:13px;color:var(--color-text-secondary);margin-top:.25rem">
+          ${pct >= 75 ? 'Solid understanding of AI and creativity.' : 'Review the sections above to reinforce the key ideas.'}
+        </div>
+      </div>`;
+    return;
+  }
+
+  const q = questions[qIdx];
+  box.innerHTML = `
+    <div class="q-bar-wrap">
+      <div class="q-bar" style="width:${(qIdx / questions.length) * 100}%"></div>
+    </div>
+
+    <div class="q-progress">
+      Question ${qIdx + 1} of ${questions.length} · ${score} correct so far
+    </div>
+
+    <div class="q-text">${q.q}</div>
+    <div class="q-opts">
+      ${q.opts.map((o, i) => `<button class="q-opt" onclick="answer(${i})">${o}</button>`).join('')}
+    </div>
+    <div id="q-fb"></div>
+  `;
+}
+
+function answer(i) {
+  if (answered) return;
+  answered = true;
+
+  const q = questions[qIdx];
+  const btns = document.querySelectorAll('.q-opt');
+
+  btns.forEach((b, idx) => {
+    b.disabled = true;
+
+    if (idx === q.correct) {
+      b.classList.add('correct');
+      b.innerHTML = "✓ " + b.innerText;
+    } else if (idx === i) {
+      b.classList.add('wrong');
+      b.innerHTML = "✕ " + b.innerText;
+    }
+  });
+
+  if (i === q.correct) score++;
+
+  document.getElementById('q-fb').innerHTML = `
+    <div class="q-fb">${q.fb}</div>
+    <button class="q-next" onclick="nextQ()">
+      ${qIdx < questions.length - 1 ? 'Next question →' : 'See results →'}
+    </button>
+  `;
+}
+
+function nextQ() {
+  qIdx++;
+  answered = false;
+  renderQ();
+}
+
+document.getElementById('pv-list').innerHTML = pvData.creator.points.map(p => `<li>${p}</li>`).join('');
+renderQ();
+</script>
