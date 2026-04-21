@@ -31,12 +31,12 @@ body {
 .hero p {
   font-size: 16px;
   color: #475569;
-  max-width: 600px;
+  max-width: 1000px;
   line-height: 1.7;
 }
 
 .section {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .sec-label {
@@ -71,7 +71,7 @@ body {
   border: 1px solid rgba(148,163,184,0.2);
   border-radius: 16px;
   padding: 1.2rem;
-  min-height: 140px; 
+  min-height: 200px; 
   height: auto; 
   position: relative;
   overflow: hidden;
@@ -102,7 +102,6 @@ body {
   opacity: 0;
   transform: translateY(10px);
   z-index: 2;
-  overflow-y: auto;
 }
 
 .card:hover .cf {
@@ -143,7 +142,7 @@ body {
 .divider {
   height: 1px;
   background: linear-gradient(to right, transparent, #cbd5f5, transparent);
-  margin: 2.5rem 0;
+  margin: 1.25rem 0;
 }
 
 .toggle-row {
@@ -175,7 +174,7 @@ body {
 .pv-card {
   background: white;
   border-radius: 16px;
-  padding: 1.3rem;
+  padding: 1.5rem;
   box-shadow: 0 8px 25px rgba(0,0,0,0.05);
 }
 
@@ -210,8 +209,8 @@ body {
 }
 
 .quiz-wrap {
-  margin-top: 2rem;
-  max-width: 640px;
+  margin-top: 0.5rem; 
+  max-width: 100%;
 }
 
 .q-progress {
@@ -267,6 +266,7 @@ body {
 }
 
 .q-next {
+  margin-top: 0.75rem;
   align-self: flex-start;
 
   font-size: 13px;
@@ -360,8 +360,7 @@ body {
         </div>
       </div>
     </div>
-    <div class="hint"><span class="dot"></span> Hover each card to reveal details</div>
-</div>
+  </div>
 
   <div class="divider"></div>
 
@@ -395,15 +394,14 @@ body {
         </div>
       </div>
     </div>
-    <div class="hint"><span class="dot"></span> Hover each card to reveal details</div>
-</div>
+  </div>
 
   <div class="divider"></div>
 
   <div class="section">
     <div class="sec-label">Section 03</div>
     <div class="sec-title">How to use AI responsibly as a creator</div>
-    <div class="sec-sub">Explore based</div>
+    <div class="sec-sub">Explore multiple perspectives</div>
 
     <div class="toggle-row">
       <button class="pv-btn active" onclick="setPv('creator')">For creators</button>
@@ -415,9 +413,15 @@ body {
       <h3 id="pv-title">Using AI as a creative collaborator</h3>
       <ul class="pv-points" id="pv-list"></ul>
     </div>
+  </div>
+  <div class="divider"></div>
 
-    <div style="margin-top:1.5rem">
-      <div class="sec-sub" style="margin-bottom:.9rem">Test your understanding</div>
+  <div class="section">
+    <div class="sec-label">Section 04</div>
+    <div class="sec-title">Test your understanding</div>
+    <div class="sec-sub">Check what you’ve learned</div>
+
+    <div class="pv-card">
       <div class="quiz-wrap" id="quiz"></div>
     </div>
   </div>
